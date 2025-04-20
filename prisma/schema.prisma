@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  Event         Event[]
+  Order         Order[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Event {
+  id          String      @id @default(cuid())
+  title       String      @db.VarChar(255)
+  description String      @db.Text()
+  status      EventStatus
+  date        DateTime
+  startTime   String      @db.VarChar(5)
+  endTime     String      @db.VarChar(5)
+  venue       String      @db.VarChar(255)
+  capacity    String?
+  price       String
+  image       String      @db.Text()
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  organizer   User?       @relation(fields: [userId], references: [id])
+  userId      String?
+  category    Category?   @relation(fields: [categoryId], references: [id])
+  categoryId  String?
+  orders      Order[]
+
+  @@map("events")
+}
+
+model Category {
+  id        String  @id @default(cuid())
+  slug      String  @unique
+  name      String
+  sortOrder Int     @unique
+  event     Event[]
+
+  @@map("categories")
+}
+
+model Order {
+  id          String @id @default(cuid())
+  stripeId    String @unique
+  totalAmount String
+  event       Event  @relation(fields: [eventId], references: [id])
+  eventId     String
+  buyer       User   @relation(fields: [userId], references: [id])
+  userId      String
+
+  @@map("orders")
+}
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  CANCELLED
+}

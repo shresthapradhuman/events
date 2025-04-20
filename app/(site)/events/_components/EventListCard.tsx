@@ -45,10 +45,10 @@ export default function EventListCard({ event }: { event: EventWithRelations }) 
             <div className="mt-auto flex gap-2">
               <Button variant="outline" className="w-1/2 sm:w-auto">
                 <ShoppingBagIcon />
-                Add to cart
+                Get Tickets
               </Button>
-              <Button variant="ghost" size="sm" className="gap-1" asChild></Button>
-              <Button className="w-1/2 sm:w-auto" asChild>
+              <Button variant="ghost" size="sm" className="gap-1 cursor-pointer" asChild></Button>
+              <Button className="w-1/2 sm:w-auto cursor-pointer" asChild>
                 <Link href={`/events/${event.id}`}>
                   Check Details <ArrowRightIcon className="h-4 w-4" />
                 </Link>

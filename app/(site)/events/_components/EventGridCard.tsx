@@ -72,14 +72,14 @@ const EventGridCard: FC<EventGridCardProps> = ({ event }) => {
       </CardContent>
 
       <CardFooter className="flex gap-2 p-4 pt-0">
-        <Button asChild>
+        <Button asChild className='cursor-pointer'>
           <Link href={`/events/${event.id}`}>
             View Details
             <ArrowRightIcon className="ml-2 h-4 w-4" />
           </Link>
         </Button>
-        <Button variant="outline">
-          <ShoppingBagIcon className="h-4 w-4" /> Add to cart
+        <Button variant="outline" className='cursor-pointer'>
+          <ShoppingBagIcon className="h-4 w-4" /> Get Tickets
         </Button>
       </CardFooter>
     </Card>

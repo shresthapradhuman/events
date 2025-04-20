@@ -17,6 +17,7 @@ import { prisma } from '@/prisma/client'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import CheckoutButton from '../_components/CheckouButton'
 
 type PageProps = {
   params: Promise<{ id: string }>
@@ -134,9 +135,7 @@ const EventDetailPage = async ({ params }: PageProps) => {
                   </span>
                 </div>
               </div>
-
-              <Button className="mb-3 w-full">Get Tickets</Button>
-
+              <CheckoutButton/>
               <p className="text-muted-foreground text-center text-xs">
                 Only {event.capacity} tickets left at this price
               </p>

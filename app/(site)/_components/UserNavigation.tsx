@@ -13,8 +13,10 @@ import Link from "next/link";
 import React from "react";
 import { logoutAction } from "../(auth)/actions";
 import { User } from "next-auth";
+import { useRouter } from "next/navigation";
 
 const UserNavigation = ({ user }: { user: User }) => {
+  const router = useRouter()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center gap-2">
@@ -47,6 +49,7 @@ const UserNavigation = ({ user }: { user: User }) => {
         <DropdownMenuItem
           onClick={async () => {
             await logoutAction();
+            router.refresh()
           }}
         >
           <LogOutIcon />

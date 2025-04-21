@@ -7,7 +7,6 @@ import {
   ArrowRightIcon,
   CalendarIcon,
   MapPinIcon,
-  ShoppingBagIcon,
   UsersIcon,
 } from 'lucide-react'
 
@@ -21,6 +20,7 @@ import CoverImage from '@/components/cover-image'
 import { type Event } from '@/prisma/generated/prisma'
 import { formatDate, formatPrice } from '@/lib/utils'
 import { type EventWithRelations } from './EventsList'
+import CheckoutButton from './CheckouButton'
 
 interface EventGridCardProps {
   event: Event & EventWithRelations
@@ -78,9 +78,7 @@ const EventGridCard: FC<EventGridCardProps> = ({ event }) => {
             <ArrowRightIcon className="ml-2 h-4 w-4" />
           </Link>
         </Button>
-        <Button variant="outline" className='cursor-pointer'>
-          <ShoppingBagIcon className="h-4 w-4" /> Get Tickets
-        </Button>
+        <CheckoutButton event={event}/>
       </CardFooter>
     </Card>
   )

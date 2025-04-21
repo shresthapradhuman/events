@@ -8,5 +8,9 @@ const config = {
     urlEndpoint: process.env.NEXT_PUBLIC_URL_ENDPOINT!,
     privateKey: process.env.PRIVATE_KEY!,
   },
+  stripe:{
+    secretKey: process.env.STRIPE_SECRET_KEY!,
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY!,
+  }
 };
 export default config;

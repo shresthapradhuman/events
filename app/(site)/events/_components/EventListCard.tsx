@@ -5,7 +5,8 @@ import { EventWithRelations } from "./EventsList";
 import CoverImage from "@/components/cover-image";
 import Link from "next/link";
 import { formatDate, formatPrice } from "@/lib/utils";
-import { ArrowRightIcon, CalendarIcon, MapPinIcon, ShoppingBagIcon, UsersIcon } from "lucide-react";
+import { ArrowRightIcon, CalendarIcon, MapPinIcon, UsersIcon } from "lucide-react";
+import CheckoutButton from "./CheckouButton";
 
 export default function EventListCard({ event }: { event: EventWithRelations }) {
   return (
@@ -43,10 +44,7 @@ export default function EventListCard({ event }: { event: EventWithRelations }) 
               </div>
             </div>
             <div className="mt-auto flex gap-2">
-              <Button variant="outline" className="w-1/2 sm:w-auto">
-                <ShoppingBagIcon />
-                Get Tickets
-              </Button>
+            <CheckoutButton event={event}/>
               <Button variant="ghost" size="sm" className="gap-1 cursor-pointer" asChild></Button>
               <Button className="w-1/2 sm:w-auto cursor-pointer" asChild>
                 <Link href={`/events/${event.id}`}>

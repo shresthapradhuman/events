@@ -135,7 +135,7 @@ const EventDetailPage = async ({ params }: PageProps) => {
                   </span>
                 </div>
               </div>
-              <CheckoutButton/>
+              <CheckoutButton event={event} className='mb-3 w-full'/>
               <p className="text-muted-foreground text-center text-xs">
                 Only {event.capacity} tickets left at this price
               </p>

@@ -1,9 +1,5 @@
-'use client'
-
 import React from 'react'
-
 import { Category, Event, Order } from '@/prisma/generated/prisma'
-
 import EventGridCard from './EventGridCard'
 import EventListCard from './EventListCard'
 

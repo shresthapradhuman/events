@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'Create, Discover, And Share Events online: concerts, conferences & more.',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
@@ -29,8 +29,8 @@ export default function RootLayout({
           'relative w-full font-sans antialiased',
         )}
       >
-        {children}
-        <Toaster />
+          {children}
+          <Toaster />
       </body>
     </html>
   )

@@ -84,3 +84,11 @@ export const eventsFiltersSchema = z.object({
   startDate: z.date().optional(),
   endDate: z.date().optional(),
 });
+
+
+export const createOrderSchema = z.object({
+  stripeId: z.string().nonempty({ message: "Stripe Id is required" }),
+  totalAmount: z.string().nonempty({ message: "Total amount is required" }),
+  eventId: z.string().nonempty({ message: "Event Id is required" }),
+  buyerId: z.string().nonempty({ message: "Buyer Id is required" }),
+})

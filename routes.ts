@@ -11,7 +11,9 @@ export const publicRoutes = [
   "/events/:path*",
   "/how-it-works",
   "/help-center",
+  '/api/webhook/stripe'
 ];
+
 
 /**
  * An Array of auth routes

@@ -1,6 +1,10 @@
-import stripe from 'stripe'
+import Stripe from 'stripe'
 import { NextResponse } from 'next/server'
 import { createOrder } from '@/app/(site)/orders/action'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2025-03-31.basil'
+})
 
 export async function POST(request: Request) {
   const body = await request.text()

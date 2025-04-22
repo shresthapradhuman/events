@@ -2,6 +2,12 @@ import Stripe from 'stripe'
 import { NextResponse } from 'next/server'
 import { createOrder } from '@/app/(site)/orders/action'
 
+export const config = {
+  api: {
+    bodyParser: false
+  }
+}
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-03-31.basil',
 })
